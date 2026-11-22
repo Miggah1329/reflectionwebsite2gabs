@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reflection 01 — Foundations of Security | The Cipher Log</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span class="dot"></span>
+      <b>THE CIPHER LOG</b>
+      <span>// InfoSec Journal</span>
+    </a>
+    <div class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="index.html#timeline">Timeline</a>
+      <a href="reflection-1.html" class="on">Reflection 01</a>
+      <a href="reflection-2.html">Reflection 02</a>
+      <a href="reflection-3.html">Reflection 03</a>
+      <a href="reflection-4.html">Reflection 04</a>
+      <a href="index.html#references">References</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="crumb"><a href="index.html">Log</a> <span>/</span> <a href="index.html#timeline">Timeline</a> <span>/</span> <span style="color:var(--cipher)">Entry 01</span></div>
+
+  <div class="entry-head">
+    <div class="stampbox"><div class="si"><span class="a">REFLECTION</span><span class="b">№ 01</span><span class="c">DECRYPTED</span></div></div>
+    <div class="kicker">Reflection 01 — Foundations of Security</div>
+    <h1>Foundations, the McCumber Cube, and Security Principles</h1>
+    <p class="dek">What the CIA triad, the AAA framework, the McCumber Cube, and a handful of design principles taught me about how security actually gets built.</p>
+    <div class="meta">
+      <span class="m">SOURCE: <b>McCumber Cube</b></span>
+      <span class="m">SOURCE: <b>Foundations of Security</b></span>
+      <span class="m">SOURCE: <b>Security Principles</b></span>
+    </div>
+  </div>
+
+  <div class="entry-body">
+
+    <div class="block">
+      <h2>New Insights</h2>
+      <p>Going into this topic, I thought of "security" mostly as a single wall you build around data — something is either protected or it isn't. The CIA triad reframed that for me. Confidentiality, integrity, and availability are three separate promises, and a system can keep one while breaking another. A backup tape that's stolen but still encrypted is a great example: confidentiality survives even though possession is lost. That distinction — possession as its own property, separate from confidentiality — was the part that made the framework click for me instead of just being three words I could recite.</p>
+
+      <div class="tagline">
+        <span class="tag insight">insight</span>
+        <p style="margin:0;">The AAA framework (authentication, authorization, accounting) made a lot more sense once I saw it as three different questions asked in sequence: <em>who are you, what are you allowed to do, and what did you actually do?</em> I'd always lumped "login" and "permissions" together as one step, but a student being able to log in (authenticated) and a student being allowed to edit grades (authorized) are genuinely different problems with different controls.</p>
+      </div>
+
+      <p>The McCumber Cube was the biggest new idea for me this week. Instead of a checklist, it's a 3×3×3 grid — the CIA triad crossed with information states (storage, processing, transmission) and safeguards (technology, policy &amp; practice, education, training &amp; awareness). That's 27 cells, and the point is that every one of them needs its own answer. I'd never really considered that protecting the <em>integrity</em> of data while it's being <em>processed</em> is a different problem from protecting its integrity while it's sitting in <em>storage</em> — and that either one might need a technical control, a policy, or just better training, not necessarily all three. It reframed security as a grid of specific, addressable gaps rather than one big blanket policy.</p>
+
+      <p>The security principles deck tied everything together through the case scenarios. What stood out was that almost none of the scenarios were solved by a single principle:</p>
+
+      <div class="grid3">
+        <div class="gcard">
+          <div class="n">Scenario 01</div>
+          <h4>Municipal Payroll</h4>
+          <div class="p">Complete Mediation · Separation of Duties · Least Privilege · Security by Design</div>
+        </div>
+        <div class="gcard">
+          <div class="n">Scenario 02</div>
+          <h4>Procurement System</h4>
+          <div class="p">Separation of Duties · Least Privilege · Complete Mediation · Defense in Depth</div>
+        </div>
+        <div class="gcard">
+          <div class="n">Scenario 03</div>
+          <h4>Exam Records</h4>
+          <div class="p">Complete Mediation · Separation of Duties · Least Privilege · Security by Design</div>
+        </div>
+      </div>
+
+      <p style="margin-top:6px;">In every one of them, the actual failure wasn't a hacker breaking in — it was a lack of accountability. The payroll system recorded <em>that</em> something changed but not <em>who</em> changed it or from where. That's a textbook Complete Mediation and Separation of Duties gap, and it made the principles feel less like abstract rules and more like a diagnostic checklist I could actually run against a real system.</p>
+    </div>
+
+    <div class="block">
+      <h2>Concepts I'd Like to Read More On</h2>
+      <p>The McCumber Cube material mentioned <strong>possession</strong> as an attribute that's distinct from confidentiality, and that a ransomware attack is technically a breach of possession, not necessarily confidentiality, if the data stays encrypted the whole time. That was new to me, and I'd like to read more about how information security models expand beyond the standard CIA triad — I get the sense there's a fuller list of properties (things like authenticity and utility) that only shows up once you look past the basic triad.</p>
+      <p>I'd also like to dig into where these principles come from institutionally. The material referenced the CNSS security model and a training standard from the 1990s that the McCumber Cube is tied to, and I don't yet have a good sense of how much of what we're learning as "best practice" traces back to that specific government/military lineage versus more recent industry standards.</p>
+    </div>
+
+    <div class="block">
+      <h2>Confusion &amp; Challenges</h2>
+      <p>Least Privilege and Need-to-Know Principle look almost identical to me on paper — both are about restricting access to the minimum necessary — and I had a hard time articulating the difference beyond "one is about permissions and one is about specific information." Working through the case scenarios helped a little, since most answers listed both principles together rather than picking one, which makes me wonder if in practice they're treated as a pair rather than two clearly separable rules.</p>
+      <p>The other challenge was scenario-mapping in general. When a case listed four applicable principles at once, I could usually justify each one after the fact, but I struggled to generate that list cold, before seeing the "applicable principles" slide. I think what I actually need more practice with isn't memorizing the nine principles, but the diagnostic skill of reading a scenario and noticing <em>which questions</em> it's failing to answer (who did this? was this checked again? could one person do all of this alone?) — since each of those questions maps to a different principle.</p>
+    </div>
+
+    <div class="entry-nav">
+      <a class="prev" href="index.html#timeline">
+        <span class="dir">← Back to</span>
+        <span class="ttl">Timeline</span>
+      </a>
+      <a class="next" href="reflection-2.html">
+        <span class="dir">Next Entry →</span>
+        <span class="ttl">Reflection 02 — The Threat Landscape</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Gaebriel N. Barredo · BSIT</span>
+    <span>The Cipher Log — Information Security Reflection Journal</span>
+  </div>
+</footer>
+
+</body>
+</html>

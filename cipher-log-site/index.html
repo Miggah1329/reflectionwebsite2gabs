@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Cipher Log — Gaebriel N. Barredo</title>
+<meta name="description" content="Information Security reflection journal by Gaebriel N. Barredo, BSIT.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span class="dot"></span>
+      <b>THE CIPHER LOG</b>
+      <span>// InfoSec Journal</span>
+    </a>
+    <div class="navlinks">
+      <a href="index.html" class="on">Home</a>
+      <a href="#timeline">Timeline</a>
+      <a href="reflection-1.html">Reflection 01</a>
+      <a href="reflection-2.html">Reflection 02</a>
+      <a href="reflection-3.html">Reflection 03</a>
+      <a href="reflection-4.html">Reflection 04</a>
+      <a href="#references">References</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap" style="display:grid; grid-template-columns:1.1fr .9fr; gap:40px; align-items:center; width:100%;">
+    <div>
+      <div class="kicker">BSIT · Information Security · Field Log</div>
+      <h1>Notes from the process of learning to <em>think like a defender.</em></h1>
+      <p class="lede">A running journal of what's clicking, what's still murky, and what I want to chase down next — logged one class discussion at a time.</p>
+
+      <div class="idrow">
+        <div>
+          <div class="k">Author</div>
+          <div class="v">Gaebriel N. Barredo</div>
+        </div>
+        <div>
+          <div class="k">Program</div>
+          <div class="v">BSIT</div>
+        </div>
+        <div>
+          <div class="k">Log Status</div>
+          <div class="v">4 of 5 entries filed</div>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn primary" href="reflection-1.html">Open Reflection 01 →</a>
+        <a class="btn ghost" href="#timeline">View Timeline</a>
+      </div>
+    </div>
+
+    <div class="wheel-holder">
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#E8B23D" stop-opacity="0.16"/>
+            <stop offset="100%" stop-color="#E8B23D" stop-opacity="0"/>
+          </radialGradient>
+          <clipPath id="clipcircle"><circle cx="200" cy="200" r="150"/></clipPath>
+        </defs>
+
+        <circle cx="200" cy="200" r="190" fill="url(#glow)"/>
+
+        <!-- outer tick ring, rotates -->
+        <g class="ring-outer">
+          <circle cx="200" cy="200" r="170" fill="none" stroke="#262E3A" stroke-width="1"/>
+          <g stroke="#E8B23D" stroke-width="2" opacity="0.75">
+            <!-- 36 ticks -->
+            <g id="ticks"></g>
+          </g>
+          <circle cx="200" cy="20" r="4" fill="#E8B23D"/>
+          <circle cx="200" cy="380" r="3" fill="#4FAF95"/>
+        </g>
+
+        <!-- middle static ring with letters -->
+        <circle cx="200" cy="200" r="140" fill="none" stroke="#262E3A" stroke-width="1"/>
+        <text fill="#5C6577" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="3">
+          <textPath href="#circlePath" startOffset="0%">C · I · A · CONFIDENTIALITY · INTEGRITY · AVAILABILITY ·</textPath>
+        </text>
+        <path id="circlePath" d="M 200,200 m -140,0 a 140,140 0 1,1 280,0 a 140,140 0 1,1 -280,0" fill="none"/>
+
+        <!-- inner ring, counter-rotates, ticks -->
+        <g class="ring-inner-ticks">
+          <circle cx="200" cy="200" r="104" fill="none" stroke="#1E2530" stroke-width="1"/>
+          <g id="ticks2" stroke="#4FAF95" stroke-width="1.5" opacity="0.6"></g>
+        </g>
+
+        <!-- core -->
+        <circle cx="200" cy="200" r="72" fill="#151A22" stroke="#262E3A" stroke-width="1"/>
+        <circle cx="200" cy="200" r="60" fill="none" stroke="#E8B23D" stroke-width="1" stroke-dasharray="2 5" opacity="0.6"/>
+        <text x="200" y="196" text-anchor="middle" fill="#E9E6DC" font-family="Bricolage Grotesque, sans-serif" font-size="22" font-weight="600">GNB</text>
+        <text x="200" y="215" text-anchor="middle" fill="#8993A3" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="2">LOG // 26</text>
+
+        <!-- scan line -->
+        <g clip-path="url(#clipcircle)">
+          <rect class="scan" x="60" y="196" width="280" height="10" fill="#4FAF95" opacity="0.3"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<script>
+  // generate tick marks for cipher wheel
+  (function(){
+    var ns = "http://www.w3.org/2000/svg";
+    var ticks = document.getElementById('ticks');
+    var ticks2 = document.getElementById('ticks2');
+    var cx=200, cy=200;
+    for(var i=0;i<36;i++){
+      var a = (i*10) * Math.PI/180;
+      var r1=170, r2 = (i%3===0)?156:163;
+      var x1=cx+r1*Math.cos(a), y1=cy+r1*Math.sin(a);
+      var x2=cx+r2*Math.cos(a), y2=cy+r2*Math.sin(a);
+      var line=document.createElementNS(ns,'line');
+      line.setAttribute('x1',x1); line.setAttribute('y1',y1);
+      line.setAttribute('x2',x2); line.setAttribute('y2',y2);
+      ticks.appendChild(line);
+    }
+    for(var j=0;j<24;j++){
+      var b=(j*15)*Math.PI/180;
+      var s1=104, s2=94;
+      var p1x=cx+s1*Math.cos(b), p1y=cy+s1*Math.sin(b);
+      var p2x=cx+s2*Math.cos(b), p2y=cy+s2*Math.sin(b);
+      var l2=document.createElementNS(ns,'line');
+      l2.setAttribute('x1',p1x); l2.setAttribute('y1',p1y);
+      l2.setAttribute('x2',p2x); l2.setAttribute('y2',p2y);
+      ticks2.appendChild(l2);
+    }
+  })();
+</script>
+
+<div class="stats">
+  <div class="wrap" style="display:grid; grid-template-columns:repeat(3,1fr); width:100%;">
+    <div class="stat"><div class="num">27</div><div class="lbl">McCumber Cells Mapped</div></div>
+    <div class="stat"><div class="num">12</div><div class="lbl">Threat Categories Logged</div></div>
+    <div class="stat"><div class="num">04</div><div class="lbl">Entries Filed So Far</div></div>
+  </div>
+</div>
+
+<section class="section" id="timeline">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Semester Progress</div>
+      <h2>Reflection Timeline</h2>
+      <p>Each entry captures one round of class discussion — new insights, ideas I want to chase further, and the parts that genuinely tripped me up. Locked entries unlock after the matching class session.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item done">
+        <div class="tl-node">01</div>
+        <div class="tl-card">
+          <div class="tl-top">
+            <span class="tl-eyebrow">Reflection 01</span>
+            <span class="badge live">● decrypted</span>
+          </div>
+          <h3>Foundations of Security, the McCumber Cube &amp; Security Principles</h3>
+          <p>The CIA triad, the AAA framework, the McCumber Cube's 27-cell model, and nine design principles pressure-tested against three case scenarios.</p>
+          <a class="tl-link" href="reflection-1.html">Read Entry →</a>
+        </div>
+      </div>
+
+      <div class="tl-item done">
+        <div class="tl-node">02</div>
+        <div class="tl-card">
+          <div class="tl-top">
+            <span class="tl-eyebrow">Reflection 02</span>
+            <span class="badge live">● decrypted</span>
+          </div>
+          <h3>The Threat Landscape: Categories of Threat &amp; Social Engineering</h3>
+          <p>The 12 categories of threats to InfoSec, why real incidents refuse to sit in a single box, and how social engineering exploits the one control that's hardest to patch — people.</p>
+          <a class="tl-link" href="reflection-2.html">Read Entry →</a>
+        </div>
+      </div>
+
+      <div class="tl-item done">
+        <div class="tl-node">03</div>
+        <div class="tl-card">
+          <div class="tl-top">
+            <span class="tl-eyebrow">Reflection 03</span>
+            <span class="badge live">● decrypted</span>
+          </div>
+          <h3>Risk Assessment</h3>
+          <p>Scoring risks by likelihood and impact on the Barangay Manicahan audit, and learning that a risk is not the same as an incident.</p>
+          <a class="tl-link" href="reflection-3.html">Read Entry →</a>
+        </div>
+      </div>
+
+      <div class="tl-item done">
+        <div class="tl-node">04</div>
+        <div class="tl-card">
+          <div class="tl-top">
+            <span class="tl-eyebrow">Reflection 04</span>
+            <span class="badge live">● decrypted</span>
+          </div>
+          <h3>Information Security Audit</h3>
+          <p>Interviewing a Barangay Manicahan representative, and learning that a reported control is not the same as a tested one.</p>
+          <a class="tl-link" href="reflection-4.html">Read Entry →</a>
+        </div>
+      </div>
+
+      <div class="tl-item locked">
+        <div class="tl-node">05</div>
+        <div class="tl-card">
+          <div class="tl-top">
+            <span class="tl-eyebrow">Reflection 05</span>
+            <span class="badge locked">○ pending</span>
+          </div>
+          <h3>Upcoming Topic</h3>
+          <p>To be filed after the next class discussion.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="references" style="padding-top:0;">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Citation Ledger</div>
+      <h2>References</h2>
+      <p>Academic and primary sources used across the entries so far, in APA format.</p>
+    </div>
+
+    <div class="refs">
+      <div class="ref">
+        <div class="cite">McCumber, J. R. (1991). Information systems security: A comprehensive model. In <em>Proceedings of the 14th National Computer Security Conference</em> (Vol. 2, pp. 328–337). National Institute of Standards and Technology.</div>
+        <div class="used">Used for: <b>Reflection 01</b> — origin of the McCumber Cube framework.</div>
+      </div>
+      <div class="ref">
+        <div class="cite">Whitman, M. E., &amp; Mattord, H. J. (2022). <em>Principles of information security</em> (7th ed.). Cengage Learning.</div>
+        <div class="used">Used for: <b>Reflection 01 &amp; 02</b> — CIA triad, security principles, and the 12 categories of threats.</div>
+      </div>
+      <div class="ref">
+        <div class="cite">National Institute of Standards and Technology. (2017). <em>An introduction to information security</em> (NIST Special Publication 800-12, Rev. 1). U.S. Department of Commerce. <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-12r1.pdf" target="_blank" rel="noopener">nvlpubs.nist.gov</a></div>
+        <div class="used">Used for: <b>Reflection 01</b> — background on confidentiality, integrity, and availability.</div>
+      </div>
+      <div class="ref">
+        <div class="cite">National Institute of Standards and Technology. (2004). <em>Standards for security categorization of federal information and information systems</em> (FIPS Publication 199). U.S. Department of Commerce. <a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.199.pdf" target="_blank" rel="noopener">nvlpubs.nist.gov</a></div>
+        <div class="used">Used for: <b>Reflection 01</b> — formal definitions of the CIA security objectives.</div>
+      </div>
+      <div class="ref">
+        <div class="cite">Mitnick, K. D., &amp; Simon, W. L. (2002). <em>The art of deception: Controlling the human element of security</em>. Wiley.</div>
+        <div class="used">Used for: <b>Reflection 02</b> — background on social engineering as the exploitation of human trust.</div>
+      </div>
+      <div class="ref">
+        <div class="cite">Federal Bureau of Investigation, Internet Crime Complaint Center. (2020, February 11). <em>2019 internet crime report</em>. <a href="https://www.ic3.gov/AnnualReport/Reports/2019_ic3Report.pdf" target="_blank" rel="noopener">ic3.gov</a></div>
+        <div class="used">Used for: <b>Reflection 02</b> — Business Email Compromise complaint and loss figures.</div>
+      </div>
+      <div class="ref">
+        <div class="cite">Cybersecurity and Infrastructure Security Agency. (2021). <em>Avoiding social engineering and phishing attacks</em>. U.S. Department of Homeland Security. <a href="https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks" target="_blank" rel="noopener">cisa.gov</a></div>
+        <div class="used">Used for: <b>Reflection 02</b> — real-world guidance on recognizing phishing and pretexting.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Gaebriel N. Barredo · BSIT</span>
+    <span>The Cipher Log — Information Security Reflection Journal</span>
+  </div>
+</footer>
+
+</body>
+</html>

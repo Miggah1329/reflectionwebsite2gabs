@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reflection 02 — The Threat Landscape | The Cipher Log</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span class="dot"></span>
+      <b>THE CIPHER LOG</b>
+      <span>// InfoSec Journal</span>
+    </a>
+    <div class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="index.html#timeline">Timeline</a>
+      <a href="reflection-1.html">Reflection 01</a>
+      <a href="reflection-2.html" class="on">Reflection 02</a>
+      <a href="reflection-3.html">Reflection 03</a>
+      <a href="reflection-4.html">Reflection 04</a>
+      <a href="index.html#references">References</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="crumb"><a href="index.html">Log</a> <span>/</span> <a href="index.html#timeline">Timeline</a> <span>/</span> <span style="color:var(--cipher)">Entry 02</span></div>
+
+  <div class="entry-head">
+    <div class="stampbox"><div class="si"><span class="a">REFLECTION</span><span class="b">№ 02</span><span class="c">DECRYPTED</span></div></div>
+    <div class="kicker">Reflection 02 — The Threat Landscape</div>
+    <h1>Categories of Threat, and the Case for Social Engineering</h1>
+    <p class="dek">Twelve categories that never stay in their own lane, and the recurring lesson that the weakest control in any system is the person operating it.</p>
+    <div class="meta">
+      <span class="m">SOURCE: <b>Threat Landscape</b></span>
+      <span class="m">SOURCE: <b>Categories of Threat</b></span>
+      <span class="m">SOURCE: <b>Social Engineering</b></span>
+    </div>
+  </div>
+
+  <div class="entry-body">
+
+    <div class="block">
+      <h2>New Insights</h2>
+      <p>The twelve categories of threats (compromises to IP, deviations in quality of service, espionage or trespass, forces of nature, human error, information extortion, sabotage or vandalism, software attacks, technical hardware/software failures, technological obsolescence, and theft) initially read like a tidy taxonomy — pick one box per incident. The real insight was that they're not mutually exclusive at all.</p>
+
+      <div class="chips">
+        <span class="chip hit">Theft</span>
+        <span class="chip hit">Espionage or Trespass</span>
+        <span class="chip hit">Sabotage or Vandalism</span>
+        <span class="chip">Compromises to IP</span>
+        <span class="chip">Deviations in QoS</span>
+        <span class="chip">Forces of Nature</span>
+        <span class="chip">Human Error or Failure</span>
+        <span class="chip">Information Extortion</span>
+        <span class="chip">Software Attacks</span>
+        <span class="chip">Technical Hardware Failure</span>
+        <span class="chip">Technical Software Failure</span>
+        <span class="chip">Technological Obsolescence</span>
+      </div>
+      <p style="margin-top:16px;">The example that made this stick: a hacker stealing customer data is <strong>theft</strong>, but getting to that data is <strong>espionage or trespass</strong>, and if the attacker defaces the site afterward to cover their tracks, that same single incident is also <strong>sabotage or vandalism</strong>. One event, three categories, highlighted above. That reframed the list for me — it's less a filing system and more a set of lenses you apply simultaneously to the same incident.</p>
+
+      <div class="tagline">
+        <span class="tag insight">insight</span>
+        <p style="margin:0;">Social engineering isn't its own category on that list of twelve — it's a <em>technique</em> that cuts across several of them (mainly espionage/trespass and human error or failure). That was a genuine "oh" moment: it explains why social engineering shows up constantly in examples for other categories instead of getting its own row.</p>
+      </div>
+
+      <p>The Kevin Mitnick material was the clearest illustration of why social engineering matters as much as it does. The line that stuck with me was his own: <em>people are the weakest link</em> — you can stack firewalls, intrusion detection, and biometrics as high as you want, and one phone call to an unsuspecting employee can undo all of it. What struck me is that social engineering attacks are often built in layers, not one lucky guess: an attacker might first collect small, seemingly harmless details (an org chart, an executive's name from the company switchboard) and only later use that credibility to extract something real.</p>
+
+      <div class="pq">
+        People are the weakest link. You can have the best technology... and somebody can call an unsuspecting employee. That's all she wrote, baby. They got everything.
+        <cite>— Kevin Mitnick, as cited in course material on social engineering</cite>
+      </div>
+
+      <p>Business Email Compromise (BEC) was a good example of how "purely human" attacks and technical exploits blend together — an attacker gets into the email system (technical), then relies entirely on a forged, socially-engineered request to get an assistant to wire money or buy gift cards (human). And phishing turned out to have more internal structure than I expected: general phishing casts a wide net, spear phishing targets a small group or one person by impersonating someone familiar, and whaling is spear phishing aimed specifically at a senior executive.</p>
+    </div>
+
+    <div class="block">
+      <h2>Concepts I'd Like to Read More On</h2>
+      <p>I'd like to understand more about how organizations actually <em>prioritize</em> across these twelve categories rather than just listing them — the material mentioned that each organization ranks threats based on its own risk exposure, but I don't yet know what that ranking process looks like in practice, or what data goes into deciding that, say, technological obsolescence deserves more attention than forces of nature for a given company.</p>
+      <p>I'm also curious about the advance-fee fraud (419) numbers — over $100 billion swindled according to the material — and would like to read more about why a scam that sounds so implausible on paper has stayed effective for decades. There seems to be a psychology-of-persuasion angle to social engineering generally that goes beyond the security controls we've been discussing, and I'd like to dig into that separately.</p>
+    </div>
+
+    <div class="block">
+      <h2>Confusion &amp; Challenges</h2>
+      <p>My biggest snag was the overlap problem I mentioned above — if a real incident can honestly be filed under three or four categories at once, I'm not sure how to decide which one is the "primary" category for reporting or prioritization purposes, or whether that decision even matters in practice versus just tracking all applicable categories.</p>
+      <p>The phishing variants were also a little slippery to keep straight on a first pass — phishing, spear phishing, whaling, pharming, and BEC all share the same social-engineering core but differ in target and technical delivery, and I found myself re-reading the definitions a couple of times before the distinctions between "who is targeted" versus "how the message is delivered" actually separated cleanly in my head.</p>
+    </div>
+
+    <div class="entry-nav">
+      <a class="prev" href="reflection-1.html">
+        <span class="dir">← Previous Entry</span>
+        <span class="ttl">Reflection 01 — Foundations of Security</span>
+      </a>
+      <a class="next" href="reflection-3.html">
+        <span class="dir">Next Entry →</span>
+        <span class="ttl">Reflection 03 — Risk Assessment</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Gaebriel N. Barredo · BSIT</span>
+    <span>The Cipher Log — Information Security Reflection Journal</span>
+  </div>
+</footer>
+
+</body>
+</html>
